@@ -1,0 +1,46 @@
+<template>
+    <view>
+        <block wx:for="{{list}}" wx:key="item{{index}}">
+            <view class="item">
+                {{item.label}}
+                <button type="primary" bindtap="goInfo({{item.id}})" size="mini" class="btn">查看详细</button>
+            </view>
+        </block>
+    </view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class myTest extends wepy.page {
+    config = {
+      navigationBarTitleText: 'myTest'
+    }
+    data = {
+      list:[{
+          "id":1,
+          "label":"第一条记录"
+      },{
+          "id":2,
+          "label":"第二条记录"
+      },{
+          "id":3,
+          "label":"第三条记录"
+      }]
+    }
+    methods = {
+        goInfo(id){
+            wx.navigateTo({
+                url: './info?id='+id
+            })
+        }
+    }
+}
+</script>
+<style>
+.item{
+    padding:10px;
+}
+.btn{
+    float:right;margin-right:10px;vertical-align:middle;
+}
+</style>

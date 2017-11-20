@@ -1,0 +1,34 @@
+<template>
+    <view style="padding:10px;">
+        <testComponent :label.sync="infoLabel"></testComponent>
+    </view>
+</template>
+<script>
+import wepy from 'wepy'
+import testComponent from '../components/test'
+
+export default class myTest extends wepy.page {
+    config = {
+      navigationBarTitleText: 'myInfo'
+    }
+    data = {
+      infoLabel: null
+    }
+    components={
+        testComponent: testComponent
+    }
+    onLoad(options){
+        console.log(options)
+        setTimeout(()=>{
+            if(options.id==1){
+                this.infoLabel = {labelValue:"第一条记录"};
+            }else if(options.id==2){
+                this.infoLabel = {labelValue:"第二条记录"};
+            }else if(options.id==3){
+                this.infoLabel = {labelValue:"第三条记录"};
+            }
+            this.$apply();
+        },1000)
+    }
+}
+</script>
